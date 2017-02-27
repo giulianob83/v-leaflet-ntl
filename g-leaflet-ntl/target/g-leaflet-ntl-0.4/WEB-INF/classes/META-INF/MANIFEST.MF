@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: Giuliano
+Build-Jdk: 1.8.0_121
+Class-Path: g-leaflet-1.0.4.jar validation-api-1.0.0.GA.jar validation
+ -api-1.0.0.GA-sources.jar slf4j-api-1.6.2.jar slf4j-simple-1.7.2.jar
+Implementation-Title: g-leaflet-ntl
+Implementation-Version: 0.4
+Implementation-Vendor-Id: org.peimari
+Created-By: Maven Integration for Eclipse
+Vaadin-Package-Version: 1
+

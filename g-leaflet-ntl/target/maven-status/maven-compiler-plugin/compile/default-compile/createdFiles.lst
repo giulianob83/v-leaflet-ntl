@@ -1,0 +1,4 @@
+org\peimari\gleaflet\ntl\client\resources\LeafletNtlClientBundle.class
+org\peimari\gleaflet\ntl\client\resources\LeafletNtlResourceInjector.class
+org\peimari\gleaflet\ntl\client\NonTiledLayer.class
+org\peimari\gleaflet\ntl\client\NonTiledWmsLayerOptions.class
