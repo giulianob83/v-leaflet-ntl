@@ -1,3 +1,3 @@
-# V-Leaflet Heat add-on project
+# V-Leaflet NonTiledLayer add-on project
 
-This is [Leaflet.heat](https://github.com/Leaflet/Leaflet.heat) addon to v-leaflet Vaadin add-on. See more from its [github page](https://github.com/mstahv/v-leaflet).
+This is [Leaflet.NonTiledLayer](https://github.com/ptv-logistics/Leaflet.NonTiledLayer) addon to v-leaflet Vaadin add-on. See more from its [github page](https://github.com/giulianob83/v-leaflet-ntl).

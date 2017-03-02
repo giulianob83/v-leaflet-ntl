@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Built-By: Giuliano
+Build-Jdk: 1.8.0_121
+Class-Path: v-leaflet-1.0.3.jar g-leaflet-1.0.3.jar jts-1.13.jar jacks
+ on-databind-2.3.2.jar jackson-annotations-2.3.0.jar jackson-core-2.3.
+ 2.jar gt-api-10.2.jar jai_core-1.1.3.jar gt-geojson-10.2.jar gt-main-
+ 10.2.jar json-simple-1.1.jar gt-referencing-10.2.jar vecmath-1.3.2.ja
+ r commons-pool-1.5.4.jar gt-metadata-10.2.jar gt-opengis-10.2.jar jsr
+ -275-1.0-beta-2.jar jgridshift-1.0.jar gt-epsg-hsql-10.2.jar hsqldb-1
+ .8.0.7.jar gt-epsg-extension-10.2.jar gt-shapefile-10.2.jar gt-data-1
+ 0.2.jar jdom-1.0.jar g-leaflet-ntl-0.4.jar validation-api-1.0.0.GA.ja
+ r validation-api-1.0.0.GA-sources.jar slf4j-api-1.6.2.jar slf4j-simpl
+ e-1.7.2.jar
+Implementation-Title: v-leaflet-ntl
+Implementation-Version: 0.5-SNAPSHOT
+Implementation-Vendor-Id: org.vaadin.addon
+Implementation-Vendor: Vaadin Community
+Created-By: Maven Integration for Eclipse
+Vaadin-Package-Version: 1
+Vaadin-Widgetsets: org.vaadin.addon.ntl.NtlWidgetset
+
