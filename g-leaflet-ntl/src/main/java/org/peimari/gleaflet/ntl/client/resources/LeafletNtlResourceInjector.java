@@ -22,7 +22,7 @@ public class LeafletNtlResourceInjector {
 	 */
 	protected void injectResources() {
 		injectScript(bundle.heatScript().getText());
-		//injectScript(bundle.heatScript2().getText());
+		injectScript(bundle.heatScript2().getText());
 	}
 
 	private static native void injectScript(String script)

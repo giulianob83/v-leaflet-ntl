@@ -1,9 +1,9 @@
-# g-leaflet-heat
+# g-leaflet-ntl
 
-Simple Java (GWT) wrapper for [Leaflet.heat](https://github.com/Leaflet/Leaflet.heat) plugin. Depends on g-leaflet project.
+Simple Java (GWT) wrapper for [Leaflet.NonTiledLayer](https://github.com/ptv-logistics/Leaflet.NonTiledLayer) plugin. Depends on g-leaflet project.
 
-g-leaflet project:
-https://github.com/mstahv/g-leaflet
+Lucana Sistemi s.r.l - Matera
+Giuliano Buompastore
 
 Releases available via Vaadin Directory:
 https://vaadin.com/directory/

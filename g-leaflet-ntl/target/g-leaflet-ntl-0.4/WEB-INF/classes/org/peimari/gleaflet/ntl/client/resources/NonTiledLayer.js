@@ -1,105 +1,6 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.L || (g.L = {})).NonTiledLayer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-(function (global){
-/*
- * L.NonTiledLayer.WMS is used for putting WMS non tiled layers on the map.
- */
-"use strict";
-
-var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null);
-
-L.NonTiledLayer.WMS = L.NonTiledLayer.extend({
-
-    defaultWmsParams: {
-        service: 'WMS',
-        request: 'GetMap',
-        version: '1.1.1',
-        layers: '',
-        styles: '',
-        format: 'image/jpeg',
-        transparent: false
-    },
-
-    options: {
-        crs: null,
-        uppercase: false
-    },
-
-    initialize: function (url, options) { // (String, Object)
-        this._wmsUrl = url;
-
-        var wmsParams = L.extend({}, this.defaultWmsParams);
-		
-		// all keys that are not NonTiledLayer options go to WMS params
-		for (var i in options) {
-			if (!L.NonTiledLayer.prototype.options.hasOwnProperty(i) && 
-                !(L.Layer && L.Layer.prototype.options.hasOwnProperty(i))) {
-				wmsParams[i] = options[i];
-			}
-		}
-
-        this.wmsParams = wmsParams;
-
-        L.setOptions(this, options);
-    },
-
-    onAdd: function (map) {
-
-        this._crs = this.options.crs || map.options.crs;
-        this._wmsVersion = parseFloat(this.wmsParams.version);
-
-        var projectionKey = this._wmsVersion >= 1.3 ? 'crs' : 'srs';
-        this.wmsParams[projectionKey] = this._crs.code;
-
-        L.NonTiledLayer.prototype.onAdd.call(this, map);
-    },
-
-    getImageUrl: function (bounds, width, height) {
-        var wmsParams = this.wmsParams;
-        wmsParams.width = width;
-        wmsParams.height = height;
-
-        var nw = this._crs.project(bounds.getNorthWest());
-        var se = this._crs.project(bounds.getSouthEast());
-
-        var url = this._wmsUrl;
-
-        var bbox = bbox = (this._wmsVersion >= 1.3 && this._crs === L.CRS.EPSG4326 ?
-        [se.y, nw.x, nw.y, se.x] :
-        [nw.x, se.y, se.x, nw.y]).join(',');
-
-        return url +
-			L.Util.getParamString(this.wmsParams, url, this.options.uppercase) +
-			(this.options.uppercase ? '&BBOX=' : '&bbox=') + bbox;
-    },
-
-    setParams: function (params, noRedraw) {
-
-        L.extend(this.wmsParams, params);
-
-        if (!noRedraw) {
-            this.redraw();
-        }
-
-        return this;
-    }
-});
-
-L.nonTiledLayer.wms = function (url, options) {
-    return new L.NonTiledLayer.WMS(url, options);
-};
-
-module.exports = L.NonTiledLayer.WMS;
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],2:[function(require,module,exports){
-(function (global){
 /*
  * L.NonTiledLayer is an addon for leaflet which renders dynamic image overlays
  */
-"use strict";
-
-var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null);
-
 L.NonTiledLayer = (L.Layer || L.Class).extend({
     includes: L.Mixin.Events,
     options: {
@@ -116,8 +17,8 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
     key: '',
 
     // override this method in the inherited class
-    //getImageUrl: function (bounds, width, height) {},
-    //getImageUrlAsync: function (bounds, width, height, f) {},
+    //getImageUrl: function (world1, world2, width, height) {},
+    //getImageUrlAsync: function (world1, world2, width, height, f) {},
 
     initialize: function (options) {
         L.setOptions(this, options);
@@ -373,6 +274,7 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
 
             var scale = size.x / mSize.x;
             image._sscale = scale;
+            console.log(image._sscale);
 
             L.DomUtil.setTransform(image, bounds.min, scale);
     },
@@ -476,11 +378,11 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
 
 
         if (this.getImageUrl) {
-            i.src = this.getImageUrl(bounds, width, height);
+            i.src = this.getImageUrl(bounds.getNorthWest(), bounds.getSouthEast(), width, height);
             i.key = this.key;
         }
         else
-            this.getImageUrlAsync(bounds, width, height, this.key, function (key, url, tag) {
+            this.getImageUrlAsync(bounds.getNorthWest(), bounds.getSouthEast(), width, height, this.key, function (key, url, tag) {
                 i.key = key;
                 i.src = url;
                 i.tag = tag;
@@ -516,6 +418,7 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
             L.DomUtil.setOpacity(this._currentImage, 1);
             L.DomUtil.setOpacity(this._bufferImage, 0);
 
+            // Todo: addInteraction for canvas
             if (this._addInteraction && this._currentImage.tag)
                 this._addInteraction(this._currentImage.tag);
 
@@ -534,9 +437,6 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
         L.DomUtil.setOpacity(this._currentCanvas, 1);
         L.DomUtil.setOpacity(this._bufferCanvas, 0);
 
-        if (this._addInteraction && this._currentCanvas._image.tag)
-            this._addInteraction(this._currentCanvas._image.tag);
-
         var tmp = this._bufferCanvas;
         this._bufferCanvas = this._currentCanvas;
         this._currentCanvas = tmp;
@@ -549,9 +449,3 @@ L.NonTiledLayer = (L.Layer || L.Class).extend({
 L.nonTiledLayer = function () {
     return new L.NonTiledLayer();
 };
-
-module.exports = L.NonTiledLayer;
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[2,1])(2)
-});
