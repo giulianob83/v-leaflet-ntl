@@ -38,6 +38,7 @@ public class LNonTiledLayer extends AbstractLeafletLayer {
 	    }
 
 	    public void setUrl(String url) {
+	    	getState().url=url;
 	    	this.url=url;
 	        markAsDirty();
 	    }
@@ -117,8 +118,17 @@ public class LNonTiledLayer extends AbstractLeafletLayer {
 	public void setOpacity(double opacity) {
 		// TODO Auto-generated method stub
 		options.put("opacity", opacity);
-		
+		markAsDirty();
 	}
+	
+	 public void setZindex(int zIndex) {
+	        options.put("zIndex", zIndex);
+	        markAsDirty();
+	    }
+	 
+	 public Integer getZindex() {
+		 return (Integer) options.get("zIndex");
+	 }
 	
 	public double getOpacity(){
 		return (Double) options.get("opacity");
