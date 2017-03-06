@@ -365,7 +365,7 @@
 		<dependency>
 			<groupId>org.peimari</groupId>
 			<artifactId>g-leaflet-ntl</artifactId>
-			<version>0.4</version>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 
