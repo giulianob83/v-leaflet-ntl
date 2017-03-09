@@ -37,10 +37,10 @@ public class LNonTiledLayerConnector extends AbstractLeafletLayerConnector<Abstr
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-		logger.log(Level.WARNING,"update connector");
+		/*logger.log(Level.WARNING,"update connector");
 		logger.log(Level.WARNING,"url "+getState().url);
 		logger.log(Level.WARNING,"options "+getState().options);
-		logger.log(Level.WARNING,"layer"+layer);
+		logger.log(Level.WARNING,"layer"+layer);*/
 		if (layer != null) {
 			removeLayerFromParent();
 		} else {
@@ -48,7 +48,7 @@ public class LNonTiledLayerConnector extends AbstractLeafletLayerConnector<Abstr
 			
 		}
 		AbstractJsonOptions options = JsonUtils.safeEval(getState().options);
-		logger.log(Level.WARNING,options.toString());
+		//logger.log(Level.WARNING,options.toString());
 		layer = NonTiledLayer.create(getState().url, options);
 		addToParent(layer);
 

@@ -43,11 +43,24 @@ public class LNonTiledLayer extends AbstractLeafletLayer {
 	        markAsDirty();
 	    }
 		
+	    
+	    
 		public Integer getMinZoom() {
 			return (Integer) options.get("minZoom");
 	        
 	    }
 
+	    public void setPane(String pane) {
+	    	options.put("pane", pane);
+	    	markAsDirty();
+	        
+	    }
+	    
+	    public String getPane() {
+	    	return (String) options.get("pane");
+	        
+	    }
+	    
 	    public void setMinZoom(Integer minZoom) {
 	    	options.put("minZoom", minZoom);
 	        
