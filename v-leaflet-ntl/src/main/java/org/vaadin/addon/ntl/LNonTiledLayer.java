@@ -1,7 +1,6 @@
 package org.vaadin.addon.ntl;
 
 import org.vaadin.addon.leaflet.AbstractLeafletLayer;
-import org.vaadin.addon.leaflet.LWmsLayer;
 import org.vaadin.addon.leaflet.jsonmodels.BasicMap;
 import org.vaadin.addon.leaflet.shared.Crs;
 import org.vaadin.addon.ntl.client.LNonTiledState;
