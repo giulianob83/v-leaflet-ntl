@@ -3,7 +3,7 @@ NonLayerTiled for Vaadin V-Leaflet
 
 A simple plugin for Vaadin V-Leaflet based on this plugin https://github.com/ptv-logistics/Leaflet.NonTiledLayer
 
-Lucana Sistemi s.r.l - Matera
+Lucana Sistemi s.r.l - Matera (http://www.lucanasistemi.com)
 
 ## Basic Use:
 ```
