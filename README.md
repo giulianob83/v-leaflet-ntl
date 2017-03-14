@@ -5,7 +5,17 @@ A simple plugin for Vaadin V-Leaflet based on this plugin https://github.com/ptv
 
 Lucana Sistemi s.r.l - Matera (http://www.lucanasistemi.com)
 
-## Basic Use:
+### Requirement
+
+Import these addons
+
+* g-leftlet-ntl (from this git repository, or from vaadin addon directory)
+* V-Leaflet addon (vaadin addon directory)
+
+Compile widgetset
+
+
+### Basic Use:
 ```
 LMap map = new LMap();
 
