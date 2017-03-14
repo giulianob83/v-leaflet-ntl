@@ -8,14 +8,16 @@ Lucana Sistemi s.r.l - Matera
 Basic Use:
 
 LMap map = new LMap();
+
 map.setView(40.666565 , 16.61098, 14.5);
 
 LNonTiledLayer ntl= new LNonTiledLayer();
+
 ntl.setUrl("your wms service url");
 ntl.setLayers("your layer");
 
-change the parameters below if your layer looks white or non trasparent
 
+change the parameters below if your layer looks white or non trasparent
 ntl.setFormat("image/png");
 ntl.setTransparent(true);
 
